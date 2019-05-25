@@ -1,0 +1,104 @@
+import simplegui,random
+box=[0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7]
+flag=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+random.shuffle(box)
+findpair=0
+attempt=0
+ary=[]
+a=0
+b=0
+
+
+def draw(canvas):
+    x=10
+    y=75
+    x1=0
+    x2=50
+    y1=0
+    y2=100
+    for i in range(16):
+        canvas.draw_text(str(box[i]),[x,y],70,'white')
+        x+=50
+        
+    for i in range(16):
+        if flag[i]==1:
+            canvas.draw_polygon([[x1,y1],[x2,y1],[x2,y2],[x1,y2]],2,'black','yellow')
+            x1+=50
+            x2+=50
+        else:
+            x1+=50
+            x2+=50
+                               
+def click(pos):
+    global box,flag,ary,findpair,attempt,a,b
+                
+    if pos[0]>=0 and pos[0]<=50:
+        flag[0]=0
+        ary.append(0)
+    elif pos[0]>=50 and pos[0]<=100:
+        flag[1]=0
+        ary.append(1)
+    elif pos[0]>=100 and pos[0]<=150:
+        flag[2]=0
+        ary.append(2)
+    elif pos[0]>=150 and pos[0]<=200:
+        flag[3]=0
+        ary.append(3)
+    elif pos[0]>=200 and pos[0]<=250:
+        flag[4]=0
+        ary.append(4)
+    elif pos[0]>=250 and pos[0]<=300:
+        flag[5]=0
+        ary.append(5)
+    elif pos[0]>=300 and pos[0]<=350:
+        flag[6]=0
+        ary.append(6)
+    elif pos[0]>=350 and pos[0]<=400:
+        flag[7]=0
+        ary.append(7)
+    elif pos[0]>=400 and pos[0]<=450:
+        flag[8]=0
+        ary.append(8)
+    elif pos[0]>=450 and pos[0]<=500:
+        flag[9]=0
+        ary.append(9)
+    elif pos[0]>=500 and pos[0]<=550:
+        flag[10]=0
+        ary.append(10)
+    elif pos[0]>=550 and pos[0]<=600:
+        flag[11]=0
+        ary.append(11)
+    elif pos[0]>=600 and pos[0]<=650:
+        flag[12]=0
+        ary.append(12)
+    elif pos[0]>=650 and pos[0]<=700:
+        flag[13]=0
+        ary.append(13)
+    elif pos[0]>=700 and pos[0]<=750:
+        flag[14]=0
+        ary.append(14)
+    elif pos[0]>=750 and pos[0]<=800:
+        flag[15]=0
+        ary.append(15)
+    else:
+        print 'error'
+    attempt+=1
+    info.set_text('attempt:'+str(attempt)+'  findpair:'+str(findpair))
+    if len(ary)>2 and len(ary)%2!=0:
+        if box[ary[0+a]]==box[ary[1+a]]:
+            findpair+=1
+            info.set_text('attempt:'+str(attempt)+'  findpair:'+str(findpair))
+        else:
+            flag[ary[0+a]]=1
+            flag[ary[1+a]]=1
+        a+=2   
+frame=simplegui.create_frame('dhruvi',800,100)
+frame.start()
+frame.set_draw_handler(draw)
+frame.set_mouseclick_handler(click)
+info=frame.add_label('attempt &findpair')
+
+                  
+                  
+
+
